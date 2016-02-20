@@ -12,7 +12,7 @@ python2 ct-submit pem.crt #获得的时间戳(*.sct)会保存在当前目录
 
 ---
 
-python2 ct-submit pem.sct -z #获得的时间戳会压缩成一个zip文件储存在当前目录
+python2 ct-submit pem.crt -z #获得的时间戳会压缩成一个zip文件储存在当前目录
 ```
 
 ## Certificate Transparency的配置
