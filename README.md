@@ -1,4 +1,4 @@
-ct-submit
+# ct-submit
 
 *一个用于获取Certificate Transparency时间戳的小工具*
 >未在python3上测试，建议使用python2执行
