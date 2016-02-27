@@ -5,7 +5,7 @@ import os
 import sys
 import re
 import json
-import urllib2
+import requests
 import struct
 import base64
 import zipfile
@@ -52,11 +52,9 @@ class Pem:
 
 
 def post(url, data):
-    request = urllib2.Request(
-            url, data, {'Content-Type': '"application/json"'})
-    req = urllib2.urlopen(request)
-    if req is not None and req.getcode() == 200:
-        return req.read()
+    req = requests.post(url, data, headers={'Content-Type': 'application/json'})
+    if req is not None and req.status_code == 200:
+        return req.json()
     else:
         raise IOError("response code is not 200")
 
@@ -96,8 +94,7 @@ def main(filename, output_zip=False):
     for url in post_urls:
         print("request: %s" % url)
         try:
-            payload_str = post(url + '/ct/v1/add-chain', chains_str)
-            payload = json.loads(payload_str)
+            payload = post(url + '/ct/v1/add-chain', chains_str)
             if output_zip:
                 output.writestr(enc_url(url) + '.sct', encrypt(payload))
             else:
