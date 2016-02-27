@@ -7,7 +7,6 @@ import re
 import json
 import urllib2
 import struct
-import base64
 import zipfile
 import StringIO
 
