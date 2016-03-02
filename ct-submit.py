@@ -7,7 +7,6 @@ import re
 import json
 import requests
 import struct
-import base64
 import zipfile
 import StringIO
 
