@@ -5,7 +5,7 @@ import os
 import sys
 import re
 import json
-import requests
+import urllib2
 import struct
 import zipfile
 import StringIO
@@ -51,9 +51,10 @@ class Pem:
 
 
 def post(url, data):
-    req = requests.post(url, data, headers={'Content-Type': 'application/json'})
-    if req is not None and req.status_code == 200:
-        return req.json()
+    request = urllib2.Request(url, data, {'Content-Type': '"application/json"'})
+    req = urllib2.urlopen(request)
+    if req is not None and req.getcode() == 200:
+        return req.read()
     else:
         raise IOError("response code is not 200")
 
