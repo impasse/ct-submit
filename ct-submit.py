@@ -94,7 +94,7 @@ def main(filename, output_zip=False):
     for url in post_urls:
         print("request: %s" % url)
         try:
-            payload = post(url + '/ct/v1/add-chain', chains_str)
+            payload = json.loads(post(url + '/ct/v1/add-chain', chains_str))
             if output_zip:
                 output.writestr(enc_url(url) + '.sct', encrypt(payload))
             else:
